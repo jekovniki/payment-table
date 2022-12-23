@@ -1,2 +1,2 @@
-# payment-table
-SPA displaying payment table
+# Payment table
+Single page application
