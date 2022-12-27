@@ -1,0 +1,10 @@
+{
+    "header": {
+        "title": "Payment table"
+      },
+    "footer": {
+        "name": "Nikolay Zhekov",
+        "description": "This Single-Page Application was created by Nikolay Zhekov. The project allows you to give a data.json object and it is displayed in a table, which then you can search or use to navigate."
+    }
+  }
+  
