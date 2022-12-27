@@ -1,6 +1,7 @@
 import Header  from "./layouts/Header";
 import content from "./data/content.json";
 import GlobalStyle from "./globalStyles";
+import Footer from "./layouts/Footer";
 
 function App({ children }) {
   return (
@@ -10,9 +11,7 @@ function App({ children }) {
       <main>
         { children }
       </main>
-      <footer>
-        Footer
-      </footer>
+      <Footer name={content.footer.name} description={content.footer.description}/>
     </div>
   );
 }

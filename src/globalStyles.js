@@ -5,7 +5,9 @@ const GlobalStyle = createGlobalStyle`
         --black: #000000;
         --main-bg: #131856;
         --white: #ffffff;
-        --mobile-width: 768px;
+        --footer-bg: #FBFBFF;
+        --light-purple: #D9D8FF;
+        --content-color: #212529;
     }
 
     /**
