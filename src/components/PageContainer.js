@@ -12,6 +12,7 @@ const PageContainer = ({ children }) => {
 }
 
 const Container = styled.div`
+    position: relative;
     margin: 0 1rem;
     @media only screen and (min-width: 767px) {
         max-width:700px;

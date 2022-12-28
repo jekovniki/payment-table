@@ -8,8 +8,10 @@ const Header = ({ content }) => {
 
     return(
         <HeaderSection>
-            <Title>{ content }</Title>
-            <Background src={money} />
+            <HeaderContainer>
+                <Title>{ content }</Title>
+                <Background src={money} />
+            </HeaderContainer>
         </HeaderSection>
     );
 }
@@ -22,6 +24,15 @@ const HeaderSection = styled.header`
     animation: slide-top 1s;
 `;
 
+const HeaderContainer = styled.div`
+    position: relative;
+    margin: 0;
+    @media only screen and (min-width: 1400px) {
+        max-width: 1800px;
+        margin: 0 auto;
+    }
+`;
+
 const Title = styled.h1`
     text-align: center;
     text-transform: uppercase;
@@ -29,10 +40,12 @@ const Title = styled.h1`
 `
 
 const Background = styled.img`
+    position: absolute;
     width: 100%;
     position: absolute;
-    top:0;
+    top: -14rem;
     animation: image-fade-up 2.5s;
+    z-index:1;
     @media only screen and (max-width:768px) {
         bottom: 0;
     }
