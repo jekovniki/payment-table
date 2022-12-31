@@ -1,0 +1,15 @@
+{
+  "id": "Id",
+  "status": "Status",
+  "created_at": "Created at",
+  "merchant_name": "Merchant name",
+  "terminal_name": "Terminal name",
+  "type": "Type",
+  "error_class": "Error class",
+  "error_message": "Error message",
+  "card_holder": "Card holder",
+  "card_number": "Card number",
+  "amount": "Amount",
+  "currency": "Currency",
+  "unique_id": "Unique Id"
+}
