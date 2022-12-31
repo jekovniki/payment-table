@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const Table = (tableData) => {
+    const [data, setData] = useState(tableData.data);
+    const [order, setOrder] = useState('ASC');
+    const sort = (column) => {
+        if (order === 'ASC') {
+            const sort = [...data].sort((firstElement, secondElement) => 
+                firstElement[column].toLowerCase() > secondElement[column].toLowerCase() ? 1 : -1
+            );
+            setData(sort);
+            setOrder("DSC");
+        }
+        if (order === 'DSC') {
+            const sort = [...data].sort((firstElement, secondElement) => 
+                firstElement[column].toLowerCase() < secondElement[column].toLowerCase() ? 1 : -1
+            );
+            setData(sort);
+            setOrder("ASC");
+        }
+    }
     const { 
         id, 
         status, 
@@ -15,23 +33,22 @@ const Table = (tableData) => {
         amount,
         unique_id
     } = tableData.labels;
-    const data = tableData.data;
 
     return (
         <TableContainer>
             <Header>
                 <Row>
                     <Label>{ id }</Label>
-                    <Label>{ merchant_name }</Label>
+                    <Label sortable onClick={() => sort("merchant_name")}>{ merchant_name }</Label>
                     <Label>{ terminal_name }</Label>
-                    <Label>{ card_holder }</Label>
-                    <Label>{ card_number }</Label>
-                    <Label>{ amount }</Label>
+                    <Label sortable onClick={() => sort("card_holder")}>{ card_holder }</Label>
+                    <Label sortable onClick={() => sort("card_number")}>{ card_number }</Label>
+                    <Label sortable onClick={() => sort("amount")}>{ amount }</Label>
                     <Label>{ unique_id }</Label>
-                    <Label>{ type }</Label>
-                    <Label>{ status }</Label>
-                    <Label>{ error_class }</Label>
-                    <Label>{ created_at }</Label>
+                    <Label sortable onClick={() => sort("type")}>{ type }</Label>
+                    <Label sortable onClick={() => sort("status")}>{ status }</Label>
+                    <Label sortable onClick={() => sort("error_class")}>{ error_class }</Label>
+                    <Label sortable onClick={() => sort("created_at")}>{ created_at }</Label>
                 </Row>
             </Header>
             <Body>{ data.map(column => (
@@ -74,6 +91,13 @@ const Row = styled.tr`
 `;
 const Label = styled.th`
     padding: 1.5rem 1rem;
+    transition: 0.3s;
+
+    &:hover {
+        cursor: ${ props => props.sortable ? "pointer" : "clicker"};
+        color: ${ props => props.sortable ? "#D9D8FF" : "#212529"};
+        transition: 0.3s;
+    }
 `;
 const Column = styled.td`
     padding: 1.5rem 1rem;
