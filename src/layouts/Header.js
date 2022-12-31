@@ -31,6 +31,9 @@ const HeaderContainer = styled.div`
         max-width: 1800px;
         margin: 0 auto;
     }
+    @media only screen and (min-width: 1700px) {
+        max-width: 2000px;
+    }
 `;
 
 const Title = styled.h1`
@@ -48,6 +51,9 @@ const Background = styled.img`
     z-index:1;
     @media only screen and (max-width:768px) {
         bottom: 0;
+    }
+    @media only screen and (min-width: 1400px) {
+        top:
     }
 `
 

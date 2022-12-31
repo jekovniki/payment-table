@@ -22,6 +22,7 @@ const FooterSection = styled.footer`
     background-color: var(--footer-bg);
     border-top: 1px solid var(--light-purple);
     padding-bottom: 4rem;
+    animation: slide-bottom 2s;
 `;
 
 const Background = styled.img`

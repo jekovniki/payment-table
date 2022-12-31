@@ -3,12 +3,17 @@ import styled from "styled-components";
 
 import Table from "../../components/Table";
 import tableLabel from "../../data/tableLabels.json";
-import data from "../../data/data.json";
+import tableData from "../../data/data.json";
+import { formatPaymentTableData } from "../../utils/helpers";
 
 const TablePage = () => {
+    const transactions = tableData.payment_transactions.map((transaction) => {
+        return formatPaymentTableData(transaction);
+    });
+    
     return (
         <TableContainer>
-            <Table labels={tableLabel} data={data} />
+            <Table labels={tableLabel} data={transactions} />
         </TableContainer>
     )
 }

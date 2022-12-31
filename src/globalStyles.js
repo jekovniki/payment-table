@@ -8,6 +8,8 @@ const GlobalStyle = createGlobalStyle`
         --footer-bg: #FBFBFF;
         --light-purple: #D9D8FF;
         --content-color: #212529;
+        --light-grey: #F6F5FF;
+        --table-border: #EFEFEF;
     }
 
     /**
@@ -62,6 +64,51 @@ const GlobalStyle = createGlobalStyle`
             opacity: 1;
             transform: translateY(0);
 
+        }
+    }
+
+    @keyframes slide-bottom {
+        from {
+            opacity: 0;
+            transform: translateY(350px);
+        } to {
+            opacity: 1;
+            transform: translateY(0);
+
+        }
+    }
+
+    @keyframes container-show {
+        0% {
+            opacity: 0;
+            transform: scale(0.1, 0.1);
+        } 10% {
+            opacity: 0;
+            transform: scale(0.1, 0.1);
+        } 20% {
+            opacity: 0;
+            transform: scale(0.1, 0.1);
+        } 30% {
+            opacity: 0;
+            transform: scale(0.1, 0.1);
+        } 40% {
+            opacity: 0;
+            transform: scale(0.1, 0.1);
+        } 50% {
+            opacity: 0;
+            transform: scale(0.1, 0.1);
+        } 60% {
+            opacity: 0;
+            transform: scale(0.1, 0.1);
+        } 70% {
+            opacity: 0;
+            transform: scale(0.1, 0.1);
+        } 80% {
+            opacity: 0;
+            transform: scale(0.1, 0.1);
+        } 100% {
+            opacity: 1;
+            transform: scale(1, 1);
         }
     }
 `;

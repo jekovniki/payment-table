@@ -25,6 +25,9 @@ const Container = styled.div`
     @media only screen and (min-width: 1400px) {
         max-width: 1320px;
     }
+    @media only screen and (min-width: 1700px) {
+        max-width: 1620px;
+    }
 `;
 
 export default PageContainer;
