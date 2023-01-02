@@ -1,23 +1,27 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useSelector, useDispatch } from 'react-redux';
+
+import { orderTableAscending, orderTableDescending } from "../actions";
 
 const Table = (tableData) => {
     const [data, setData] = useState(tableData.data);
-    const [order, setOrder] = useState('ASC');
+    const tableOrder = useSelector(state => state.tableOrder);
+    const dispatch = useDispatch();
     const sort = (column) => {
-        if (order === 'ASC') {
+        if (tableOrder === true) {
             const sort = [...data].sort((firstElement, secondElement) => 
                 firstElement[column].toLowerCase() > secondElement[column].toLowerCase() ? 1 : -1
             );
             setData(sort);
-            setOrder("DSC");
+            dispatch(orderTableDescending());
         }
-        if (order === 'DSC') {
+        if (tableOrder === false) {
             const sort = [...data].sort((firstElement, secondElement) => 
-                firstElement[column].toLowerCase() < secondElement[column].toLowerCase() ? 1 : -1
+                firstElement[column].toLowerCase() > secondElement[column].toLowerCase() ? 1 : -1
             );
             setData(sort);
-            setOrder("ASC");
+            dispatch(orderTableAscending());
         }
     }
     const { 
