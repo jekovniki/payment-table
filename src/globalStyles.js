@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
         --content-color: #212529;
         --light-grey: #F6F5FF;
         --table-border: #EFEFEF;
+        --main-btn: #F7F9FD;
     }
 
     /**

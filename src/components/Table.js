@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from "react-router-dom";
+import Button from "./Button";
 
 import { orderTableAscending, orderTableDescending } from "../actions";
 
@@ -67,7 +69,7 @@ const Table = (tableData) => {
                     <Column>{ column.type }</Column>
                     <Column error={column.status === "error"} status>{ column.status }</Column>
                     <Column>{ column.error_class }</Column>
-                    <Column>{ column.created_at }</Column>
+                    <Column><Button><Link to={column.url}>{ column.created_at }</Link></Button></Column>
                 </Row>
             )) }</Body>
         </TableContainer>
