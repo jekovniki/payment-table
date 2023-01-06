@@ -7,7 +7,8 @@ import tableData from "../../data/data.json";
 import { formatPaymentTableData } from "../../utils/helpers";
 
 const TablePage = () => {
-    const transactions = tableData.payment_transactions.map((transaction) => {
+    const tableCopy = JSON.parse(JSON.stringify(tableData));
+    const transactions = tableCopy.payment_transactions.map((transaction) => {
         return formatPaymentTableData(transaction);
     });
     

@@ -4,7 +4,9 @@ import {
     Routes,
     Route
   } from "react-router-dom";
+
 import TablePage from "./Table";
+import MerchantPage from "./Merchant";
 
 const Navigation = () => {
     
@@ -12,7 +14,7 @@ const Navigation = () => {
         <Router>
             <Routes>
                 <Route exact path="/" element={<TablePage />} />
-                <Route exact path="/merchant/:id" element={<TablePage />} />
+                <Route exact path="/merchant/:id" element={<MerchantPage />} />
             </Routes>
         </Router>
     )
