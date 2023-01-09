@@ -1,6 +1,6 @@
 export function formatPaymentTableData(data, formatErrorClass = true) {
     data.type = removeWordFromString(data.type, "Transaction");
-    console.log(formatErrorClass);
+
     if (formatErrorClass === true) {
         data.error_class = removeWordFromString(data.error_class, "Module::");
         data.error_class = removeWordFromString(data.error_class, "Error");
