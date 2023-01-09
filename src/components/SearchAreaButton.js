@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-const SearchAreaButton = ({ children, active }) => {
+const SearchAreaButton = ({ children, onClick = () => {} }) => {
     return(
-        <Button>
+        <Button onClick={onClick}>
             { children }
         </Button>
     )

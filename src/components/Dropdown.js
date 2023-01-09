@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import React from "react";
 
-const Dropdown = ({ options }) => {
+const Dropdown = ({ options, onChange = () => {}, isDisabled = false }) => {
     const data = options?.data ? options.data : options;
     
     return (
-        <DropdownContainer>
+        <DropdownContainer disabled={isDisabled} onChange={onChange}>
             {(() => {
                 const options = [];
                 let i = 1;

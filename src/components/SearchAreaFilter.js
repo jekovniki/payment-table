@@ -1,17 +1,30 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import SearchAreaButton from "./SearchAreaButton";
 import Dropdown from "./Dropdown";
 import Filter from "./Filter";
 
 const SearchAreaFilter = (data) => {
+    const [filterValue, setFilterValue] = useState("id");
+    const [filterElement, setFilterElement] = useState([]);
+    let i = 1;
+
+    const addFilter = () => {
+        setFilterElement(filterElement.concat(<Filter key={i} type={filterValue} />));
+
+        i++;
+    }
+    
     return(
         <SearchAreaFilterContainer>
             <Title>Search filter</Title>
             <SearchAreaFilterSection>
-                <Dropdown options={data} />
-                <SearchAreaButton>Add filter +</SearchAreaButton>
+                <Dropdown options={data} onChange={(event) => setFilterValue(event.target.value)} />
+                <SearchAreaButton onClick={addFilter}>Add filter +</SearchAreaButton>
             </SearchAreaFilterSection>
-            <Filter />
+            <ActiveFiltersContainer>
+                { filterElement }
+            </ActiveFiltersContainer>
         </SearchAreaFilterContainer>
     )
 }
@@ -30,6 +43,14 @@ const SearchAreaFilterSection = styled.div`
     border-radius: 20px;
     border: 1px solid var(--main-bg);
     margin-bottom: 10px;
+`;
+
+const ActiveFiltersContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    > div {
+        margin: 0 .5rem .5rem 0;
+    }
 `;
 
 export default SearchAreaFilter;

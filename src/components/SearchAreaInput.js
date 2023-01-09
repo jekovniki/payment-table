@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-const SearchAreaInput = (data) => {
+const SearchAreaInput = ({ placeholder, onChange=() => {} }) => {
     return(
-        <InputField placeholder={ data.placeholder ?? ""} />
+        <InputField placeholder={ placeholder ?? ""} onChange={onChange} />
     )
 }
 

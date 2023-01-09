@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
         --light-grey: #F6F5FF;
         --table-border: #EFEFEF;
         --main-btn: #F7F9FD;
+        --red-btn: #dc3545;
     }
 
     /**

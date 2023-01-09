@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-const MainButton = ({ children }) => {
+const MainButton = ({ children, onClick=() => {} }) => {
     return(
-        <Button>
+        <Button onClick={onClick}>
             { children }
         </Button>
     )
