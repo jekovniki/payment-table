@@ -1,5 +1,5 @@
 const tableOrderReducer = (state = true, action) => {
-    switch(action.type) {
+    switch(action.payload) {
         case 'ASC':
             return !state;
         case 'DSC':

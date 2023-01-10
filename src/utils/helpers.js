@@ -1,17 +1,3 @@
-export function formatPaymentTableData(data, formatErrorClass = true) {
-    data.type = removeWordFromString(data.type, "Transaction");
-    console.log(formatErrorClass);
-    if (formatErrorClass === true) {
-        data.error_class = removeWordFromString(data.error_class, "Module::");
-        data.error_class = removeWordFromString(data.error_class, "Error");
-    }
-    data.amount = formatPaymentAmount(data.amount, data.currency);
-    data.created_at = formatDate(data.created_at);
-    data.url = `merchant/${data.id}`
-
-    return data;
-}
-
 function formatPaymentAmount(amount, currency) {
     if (isNaN(amount) === false) {
         return amount = `${amount} ${currency}`;
@@ -30,4 +16,27 @@ function formatDate(stringDate) {
 
 function removeWordFromString(originalString, removedWord) {
     return originalString.replace(removedWord, '');
+}
+
+export function formatPaymentTableData(data, formatErrorClass = true) {
+    data.type = removeWordFromString(data.type, "Transaction");
+
+    if (formatErrorClass === true) {
+        data.error_class = removeWordFromString(data.error_class, "Module::");
+        data.error_class = removeWordFromString(data.error_class, "Error");
+    }
+    data.amount = formatPaymentAmount(data.amount, data.currency);
+    data.original_created_at = data.created_at;
+    data.created_at = formatDate(data.created_at);
+    data.url = `merchant/${data.id}`
+
+    return data;
+}
+
+export function formatDateForSorting(dateString) {
+    return dateString.startsWith("20") ? dateString : `20${dateString}`;
+}
+
+export function convertToUnderscore(string) {
+    return string.split(' ').join('_');
 }

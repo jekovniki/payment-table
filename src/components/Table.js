@@ -1,29 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
-import Button from "./Button";
 
-import { orderTableAscending, orderTableDescending } from "../actions";
+import MainButton from "./MainButton";
+import { orderTable, setTableData } from "../actions";
 
 const Table = (tableData) => {
-    const [data, setData] = useState(tableData.data);
+    const dataFilter = useSelector(state => state.dataFilter);
     const tableOrder = useSelector(state => state.tableOrder);
     const dispatch = useDispatch();
     const sort = (column) => {
         if (tableOrder === true) {
-            const sort = [...data].sort((firstElement, secondElement) => 
+            const sort = [...dataFilter].sort((firstElement, secondElement) => 
                 firstElement[column].toLowerCase() > secondElement[column].toLowerCase() ? 1 : -1
             );
-            setData(sort);
-            dispatch(orderTableDescending());
+            dispatch(setTableData(sort));
+            dispatch(orderTable('DSC'));
         }
         if (tableOrder === false) {
-            const sort = [...data].sort((firstElement, secondElement) => 
-                firstElement[column].toLowerCase() > secondElement[column].toLowerCase() ? 1 : -1
+            const sort = [...dataFilter].sort((firstElement, secondElement) => 
+                firstElement[column].toLowerCase() < secondElement[column].toLowerCase() ? 1 : -1
             );
-            setData(sort);
-            dispatch(orderTableAscending());
+            dispatch(setTableData(sort));
+            dispatch(orderTable('ASC'));
         }
     }
     const { 
@@ -57,8 +57,8 @@ const Table = (tableData) => {
                     <Label sortable onClick={() => sort("created_at")}>{ created_at }</Label>
                 </Row>
             </Header>
-            <Body>{ data.map(column => (
-                <Row key={ column.id }>
+            <Body>{ dataFilter.map((column, key) => (
+                <Row key={ key }>
                     <Column>{ column.id }</Column>
                     <Column>{ column.merchant_name }</Column>
                     <Column>{ column.terminal_name }</Column>
@@ -69,7 +69,7 @@ const Table = (tableData) => {
                     <Column>{ column.type }</Column>
                     <Column error={column.status === "error"} status>{ column.status }</Column>
                     <Column>{ column.error_class }</Column>
-                    <Column><Button><Link to={column.url}>{ column.created_at }</Link></Button></Column>
+                    <Column><MainButton><Link to={column.url}>{ column.created_at }</Link></MainButton></Column>
                 </Row>
             )) }</Body>
         </TableContainer>

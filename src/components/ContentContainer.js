@@ -10,7 +10,7 @@ const ContentContainer = ({ children }) => {
 const Content = styled.div`
     position: absolute;
     width: -webkit-fill-available;
-    padding: 3.75rem 1rem;
+    padding: 1.5rem 1rem 2.5rem;
     margin-top: -1.875rem;
     border-radius: 1.25rem;
     background-color: var(--white);

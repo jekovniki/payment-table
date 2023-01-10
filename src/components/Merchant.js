@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-import Button from "./Button";
+import MainButton from "./MainButton";
 import { Link } from "react-router-dom";
 
 const Merchant = (merchantData) => {
     const data = merchantData.data;
-    console.log(data);
     return(
         <MerchantColumns>
             <Title>{ data.merchant_name }</Title>
@@ -56,11 +55,11 @@ const Merchant = (merchantData) => {
                     <Information>{ data.created_at }</Information>
                 </DataRow>
             </DataColumns>
-            <Button>
+            <MainButton>
                 <Link to="/">
                     Back
                 </Link>
-            </Button>
+            </MainButton>
         </MerchantColumns>
     );
 }
