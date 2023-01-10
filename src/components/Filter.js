@@ -5,26 +5,44 @@ import { useSelector, useDispatch } from 'react-redux';
 import Dropdown from "./Dropdown";
 import SearchAreaInput from "./SearchAreaInput";
 import MainButton from "./MainButton";
+import content from "../data/content.json";
+import { setTableData } from "../actions";
 
 const Filter = ({ type }) => {
     const dispatch = useDispatch();
+    const filterValue = useSelector(state => state.searchFilter);
     const dataFilter = useSelector(state => state.dataFilter);
-    const dropdownData = {
-        equal: "Equal",
-        startsWith: "Starts with",
-        endsWith: "Ends with",
-        contains: "Contains"
-    }
+    const [tableState, setTableState] = useState(dataFilter);
     const [filter, isFilterSet] = useState(false);
-    const [sortCriteria, setSortCriteria] = useState(dropdownData.equal);
+    const [sortCriteria, setSortCriteria] = useState(content.dropdown.data.equal);
     const [value, setValue] = useState("");
+
+    const handleFilter = () => {
+        switch (sortCriteria) {
+            case content.dropdown.data.equal :
+                const equalResult = dataFilter.filter(payment => payment[filterValue] == value);
+                dispatch(setTableData(equalResult));
+                break;
+            case content.dropdown.data.startsWith:
+                const startsWithResult = dataFilter.filter(payment => payment[filterValue].startsWith(value));
+                dispatch(setTableData(startsWithResult));
+                break;
+            case content.dropdown.data.endsWith:
+                const endsWithResult = dataFilter.filter(payment => payment[filterValue].endsWith(value));
+                dispatch(setTableData(endsWithResult));
+                break;
+            case content.dropdown.data.contains:
+                const containsResult = dataFilter.filter(payment => payment[filterValue].includes(value));
+                dispatch(setTableData(containsResult));
+                break;
+            default:
+                dispatch(setTableData(tableState));
+        }
+    }
     
     const setFilter = () => {
-        if (filter === false) {
-            isFilterSet(true);
-        } else {
-            isFilterSet(false);
-        }
+        isFilterSet(!filter);
+        handleFilter();
     }
 
     return(
@@ -33,8 +51,8 @@ const Filter = ({ type }) => {
             <Container isSet={filter} >
                 { type }
                 <Dropdown 
-                    options={dropdownData} 
-                    onChange={(event) => setSortCriteria(event.target.value)}
+                    options={content.dropdown.data} 
+                    onChange={(event) => {setSortCriteria(event.target.value)}}
                     isDisabled={filter}
                 />
                 { filter === false ? <SearchAreaInput onChange={(event) => setValue(event.target.value)} /> : value }

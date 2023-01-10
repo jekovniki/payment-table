@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useSelector, useDispatch } from 'react-redux';
+
+import { addSearchFilter } from "../actions";
 import SearchAreaButton from "./SearchAreaButton";
 import Dropdown from "./Dropdown";
 import Filter from "./Filter";
+import { convertToUnderscore } from "../utils/helpers";
+
+let i = 1;
 
 const SearchAreaFilter = (data) => {
-    const [filterValue, setFilterValue] = useState("id");
+    const dispatch = useDispatch();
+    const filterValue = useSelector(state => state.searchFilter);
     const [filterElement, setFilterElement] = useState([]);
-    let i = 1;
-
     const addFilter = () => {
         setFilterElement(filterElement.concat(<Filter key={i} type={filterValue} />));
 
@@ -19,7 +24,8 @@ const SearchAreaFilter = (data) => {
         <SearchAreaFilterContainer>
             <Title>Search filter</Title>
             <SearchAreaFilterSection>
-                <Dropdown options={data} onChange={(event) => setFilterValue(event.target.value)} />
+                <Dropdown options={data} onChange={(event) => {
+                    dispatch(addSearchFilter(convertToUnderscore(event.target.value.toLowerCase())))}} />
                 <SearchAreaButton onClick={addFilter}>Add filter +</SearchAreaButton>
             </SearchAreaFilterSection>
             <ActiveFiltersContainer>

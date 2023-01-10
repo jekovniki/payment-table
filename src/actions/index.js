@@ -11,10 +11,9 @@ export const setTableData = (data) => {
         payload: data
     }
 }
-
-export const setSearchBy = (criteria) => {
+export const addSearchFilter = (criteria) => {
     return {
-        type: "Filter",
+        type: "Search",
         payload: criteria
     }
 }

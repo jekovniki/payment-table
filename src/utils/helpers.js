@@ -36,3 +36,7 @@ export function formatPaymentTableData(data, formatErrorClass = true) {
 export function formatDateForSorting(dateString) {
     return dateString.startsWith("20") ? dateString : `20${dateString}`;
 }
+
+export function convertToUnderscore(string) {
+    return string.split(' ').join('_');
+}

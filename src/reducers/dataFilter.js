@@ -14,6 +14,8 @@ const dataFilterReducer = (state = transactions, action) => {
             return [...data];
         case 'Order':
             return [...data];
+        case 'Search':
+            return [...data];
         default: 
             return state;
     }
