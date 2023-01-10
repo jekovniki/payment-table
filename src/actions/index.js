@@ -1,18 +1,20 @@
-export const orderTableAscending = () => {
+export const orderTable = (order) => {
     return {
-        type: "ASC",
-    };
+        type: "Order",
+        payload: order
+    }
 }
 
-export const orderTableDescending = () => {
+export const setTableData = (data) => {
     return {
-        type: "DSC",
-    };
+        type: "Data",
+        payload: data
+    }
 }
 
-export const updateDateField = (category, filters) => {
+export const setSearchBy = (criteria) => {
     return {
-        type: 'update',
-        payload: {[category]: filters}
+        type: "Filter",
+        payload: criteria
     }
 }

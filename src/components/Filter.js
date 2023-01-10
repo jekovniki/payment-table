@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useSelector, useDispatch } from 'react-redux';
+
 import Dropdown from "./Dropdown";
 import SearchAreaInput from "./SearchAreaInput";
 import MainButton from "./MainButton";
 
 const Filter = ({ type }) => {
+    const dispatch = useDispatch();
+    const dataFilter = useSelector(state => state.dataFilter);
     const dropdownData = {
         equal: "Equal",
         startsWith: "Starts with",
