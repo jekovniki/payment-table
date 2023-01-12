@@ -41,8 +41,12 @@ const Filter = ({ type }) => {
     }
     
     const setFilter = () => {
+        if (filter === true) {
+            dispatch(setTableData(tableState));
+        } else {
+            handleFilter();
+        }
         isFilterSet(!filter);
-        handleFilter();
     }
 
     return(

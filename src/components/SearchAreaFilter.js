@@ -19,6 +19,11 @@ const SearchAreaFilter = (data) => {
 
         i++;
     }
+    const removeFilters = () => {
+        setFilterElement([]);
+
+        i = 1;
+    }
     
     return(
         <SearchAreaFilterContainer>
@@ -27,6 +32,7 @@ const SearchAreaFilter = (data) => {
                 <Dropdown options={data} onChange={(event) => {
                     dispatch(addSearchFilter(convertToUnderscore(event.target.value.toLowerCase())))}} />
                 <SearchAreaButton onClick={addFilter}>Add filter +</SearchAreaButton>
+                <SearchAreaButton onClick={removeFilters}>Remove all filters</SearchAreaButton>
             </SearchAreaFilterSection>
             <ActiveFiltersContainer>
                 { filterElement }

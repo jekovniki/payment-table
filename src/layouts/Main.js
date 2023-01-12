@@ -17,7 +17,7 @@ const Main = ({ children }) => {
 }
 
 const MainContainer = styled.main`
-    min-height:53vh;
+    min-height:65vh;
 `;
 
 
